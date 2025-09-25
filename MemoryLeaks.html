@@ -1,0 +1,63 @@
+<!--Below Demo code explain the concept of Memory Management and Garbage Collection-->
+<html>
+    <head>
+        <title>Memory Leaks</title>
+        <style>
+            body{
+                background-color: bisque;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-weight: bolder;
+            }
+            .para{
+                color: brown;
+                font-size: larger;
+                font-weight: bolder;
+            }
+        </style>
+    </head>
+    <body class="body">
+        <button id="start">Start the Element</button>
+        <button id="remove">Remove the Element</button>
+        <button id="stop">Stop the Element</button>
+        <div id="box">
+            <p class="para">Leaks...Overflow..Please wait..!</p>
+        </div>
+     <script>
+        const boxElement = document.getElementById("box");
+        let TimerId = null;
+        //Accessing the 'Start' button
+        const startBtn = document.getElementById("start").onclick = () =>
+     {
+        TimerId =  setInterval( () =>{
+         if(TimerId === null)
+          {
+            console.log(`Timer Running...`); 
+          }
+          else
+          {
+            console.log(`Timer is already Running`);
+          }
+          },3000);
+     };
+     //Accessing the 'Remove' Button
+     const removeBtn = document.getElementById("remove").onclick = () =>
+    {
+        boxElement.remove();//Remove the Contents within 'div'
+        alert(`Box Element Can be Removed Successfully!`);
+        
+    };
+    //Accessing the 'Stop' button
+    const stopBtn = document.getElementById("stop").onclick = () =>
+{
+      if(TimerId !== null)
+      {clearInterval(TimerId);//clearInterval() stops the 'Timer'
+       TimerId = null;//set the Timer to Initial state
+       alert(`Timer Stopped`);
+      }
+      else{
+        alert(`Timer not Stopped`);
+      }
+};
+     </script>
+    </body>
+</html>
