@@ -1,0 +1,51 @@
+<!--Below Demo explain the concept of 'Event Delegation' in Javascript-->
+<!-- Event Delegation makes the code "cleaner" and "reusable"-->
+<html>
+    <head>
+        <title>Event Delegation</title>
+        <style>
+         button{
+            border: 15px;
+            font-weight: bolder;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: black;
+            color: whitesmoke;
+         }
+         body
+         {
+            background-color: plum;
+         }
+         #Parent ul{
+            display: none;
+            font-size: larger;
+            font-weight: bolder;
+            margin-top: 20px;
+         }
+        </style>
+    </head>
+    <body>
+        <div id="Parent">
+            <ul>
+                <li>Detergent Soap</li>
+                <li>Detergent Liquid</li>
+                <li>Fragrant Soap</li>
+                <li>Fragrant Liquid</li>
+            </ul>
+            <button>Click here to see the Items</button>
+        </div>
+ <script>
+    const ParentElement = document.getElementById("Parent");//Instead declare the 'EventListener' to each element , only providing event to the parent element
+    //It can be done by 'Event Delegation' we only add the event to 'parent element' ex:"div" the inner html element like "button","list" everything can be automatically called.
+    ParentElement.addEventListener('click', (event) =>//add the event to ParentElement 'div'
+    {
+       if( event.target.tagName =='BUTTON')//Must give the tag names in "capital letters"
+       {
+        const ul = document.querySelector("ul");//Initially the "list element" is none the the style added as "block"
+        ul.style.display = "block";
+        alert(`Event Delegation done successfully`);
+    }
+
+    });//Event Delegation saves 'memory & Time' by adding the event to Parent elements instead of declaring to each elements
+ </script>      
+    </body>
+</html>
