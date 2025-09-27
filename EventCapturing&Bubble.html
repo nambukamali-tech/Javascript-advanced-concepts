@@ -1,0 +1,50 @@
+<!--Event Capturing and Bubbling the advanced concepts in JS-->
+<!--Event Capturing and Bubbling has 'Three Phases'-->
+<!--It explain how the event works from root to other elements-->
+<html>
+    <head>
+        <title>Event Capturing and Bubbling</title><!--This concepts comes under the Event 'propagation'-->
+        <style>
+            button{
+                border: 10px;
+                background-color: darkorange;
+                color: white;
+            }
+            body{
+                background-color: violet;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="production_Element">
+            <div id="Dispatch_Element">
+                <button id="closing_Stock">Click to see the stock</button>
+            </div>
+        </div>
+        <script>
+            const production = document.getElementById("production_Element");
+            const dispatch = document.getElementById("Dispatch_Element");
+            const closing_stock = document.getElementById("closing_Stock");
+
+        //Add Event 'click'
+         //Phase 1 'capturing starts from Root'
+            production.addEventListener('click' , (event) =>
+        {
+            alert(`production capturing`);//Capturing means simply 'the starting of event'
+            console.log(`Production done (capturing phase)`);
+        },true);//setting 'true' for the listener starts from 'top'
+        //Phase 2 'Target Reached'
+        dispatch.addEventListener('click' , () =>
+        {  
+           console.log(`Items Dispatched successfully(Target phase)`);
+        });
+        //Phase 3 'Event Bubbled' to Root
+        production.addEventListener('click' , () =>
+        {
+           console.log(`production bubbling(Third phase)`);
+        });
+        </script>
+    </body>
+</html>
+<!--Event Bubbling like a 'tool'-->
+<!--Event Delegation is 'strategy' without bubbling not using delegation-->
